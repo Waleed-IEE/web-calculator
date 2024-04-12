@@ -23,4 +23,6 @@ let leftOperand = [], mathOperator = "", rightOperand = [];
 const display = document.querySelector(".result.container");
 const buttons = document.querySelector(".buttons.container");
 
-buttons.addEventListener("click", (event) => {});
+buttons.addEventListener("click", (event) => {
+    if(event.target.tagName === "BUTTON"){}
+});
