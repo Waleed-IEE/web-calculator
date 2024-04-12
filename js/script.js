@@ -26,7 +26,11 @@ const buttons = document.querySelector(".buttons.container");
 buttons.addEventListener("click", (event) => {
     if(event.target.tagName === "BUTTON"){
         if((typeof +event.target.textContent === "number" && !isNaN(+event.target.textContent)) || event.target.textContent === "."){}
-        else if(event.target.textContent === "clear"){}
+        else if(event.target.textContent === "clear"){
+            leftOperand = [];
+            mathOperator = "";
+            rightOperand = [];
+        }
         else if(event.target.textContent === "±"){}
         else if(event.target.textContent === "="){}
         else{}
