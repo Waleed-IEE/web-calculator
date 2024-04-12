@@ -19,4 +19,4 @@ function operate(leftOperand, mathOperator, rightOperand){
     : "INVALID MATH OPERATOR!"
 }
 
-let leftOperand, mathOperator, rightOperand;
+let leftOperand = [], mathOperator = "", rightOperand = [];
