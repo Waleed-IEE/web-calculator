@@ -14,8 +14,8 @@ function divide(a, b){
 function operate(leftOperand, mathOperator, rightOperand){
     return mathOperator === "+" ? add(leftOperand, rightOperand)
     : mathOperator === "-" ? subtract(leftOperand, rightOperand)
-    : mathOperator === "*" ? multiply(leftOperand, rightOperand)
-    : mathOperator === "/" ? divide(leftOperand, rightOperand)
+    : mathOperator === "*" || mathOperator === "×" ? multiply(leftOperand, rightOperand)
+    : mathOperator === "/" || mathOperator === "÷" ? divide(leftOperand, rightOperand)
     : "INVALID MATH OPERATOR!"
 }
 
