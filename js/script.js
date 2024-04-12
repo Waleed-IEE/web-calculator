@@ -25,4 +25,5 @@ const buttons = document.querySelector(".buttons.container");
 
 buttons.addEventListener("click", (event) => {
     if(event.target.tagName === "BUTTON"){}
+    event.stopPropagation();
 });
