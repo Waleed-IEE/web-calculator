@@ -31,5 +31,14 @@ buttons.addEventListener("click", (event) => {
         else if(event.target.textContent === "="){}
         else{}
     }
+    if(event.target.textContent !== "="){
+        if(leftOperand.length === 0 && mathOperator === "" && rightOperand.length === 0){
+            display.textContent = `0`;
+        }
+        else{
+            display.textContent = `${leftOperand.join("")} ${mathOperator} ${rightOperand.join("")}`;
+        }
+    }
+
     event.stopPropagation();
 });
