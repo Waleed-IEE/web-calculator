@@ -43,7 +43,13 @@ buttons.addEventListener("click", (event) => {
             rightOperand = [];
         }
         else if(event.target.textContent === "±"){}
-        else if(event.target.textContent === "="){}
+        else if(event.target.textContent === "="){
+            let checkValidOperation = !(leftOperand.length === 0 && mathOperator === "" && rightOperand.length === 0);
+            if(checkValidOperation){
+                let result = operate(+leftOperand.join(""), mathOperator, +rightOperand.join(""));
+                display.textContent = `${result}`;
+            }
+        }
         else{
             mathOperator = event.target.textContent;
         }
