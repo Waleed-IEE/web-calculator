@@ -12,12 +12,11 @@ function divide(a, b){
 }
 
 function operate(leftOperand, mathOperator, rightOperand){
-    mathOperator === "+" ? add(leftOperand, rightOperand)
+    return mathOperator === "+" ? add(leftOperand, rightOperand)
     : mathOperator === "-" ? subtract(leftOperand, rightOperand)
     : mathOperator === "*" ? multiply(leftOperand, rightOperand)
     : mathOperator === "/" ? divide(leftOperand, rightOperand)
-    : "ERROR"
+    : "INVALID MATH OPERATOR!"
 }
 
 let leftOperand, mathOperator, rightOperand;
-console.log(operate(5,"+",5));
