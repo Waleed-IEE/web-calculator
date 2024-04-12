@@ -20,3 +20,5 @@ function operate(leftOperand, mathOperator, rightOperand){
 }
 
 let leftOperand = [], mathOperator = "", rightOperand = [];
+const display = document.querySelector(".result.container");
+const buttons = document.querySelector(".buttons.container");
