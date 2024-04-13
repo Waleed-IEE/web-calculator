@@ -55,6 +55,23 @@ buttons.addEventListener("click", (event) => {
             rightOperandSign = "";
             result = "Empty";
         }
+        else if (eventTextContent === "⌫"){
+            if(rightOperand.length !== 0){
+                rightOperand.pop();;
+            }
+            else if(rightOperandSign !== ""){
+                rightOperandSign = "";
+            }
+            else if(mathOperator !== ""){
+                mathOperator = "";
+            }
+            else if(leftOperand.length != 0){
+                leftOperand.pop();
+            }
+            else if(leftOperandSign !== ""){
+                leftOperandSign = "";
+            }
+        }
         else if(eventTextContent === "±"){
             let isLeftOperand = mathOperator === "";
             if(result === "Empty"){
