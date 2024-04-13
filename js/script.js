@@ -24,43 +24,33 @@ const display = document.querySelector(".result.container");
 const buttons = document.querySelector(".buttons.container");
 
 buttons.addEventListener("click", (event) => {
-    if(event.target.tagName === "BUTTON"){
-        if((typeof +event.target.textContent === "number" && !isNaN(+event.target.textContent)) || event.target.textContent === "."){
-            if(mathOperator === ""){
-                if(event.target.textContent === "." && leftOperand.length !== 0){
-                    if(!leftOperand.includes(".")){
-                        leftOperand.push(event.target.textContent);
-                    }
-                }
-                else{
-                    if(!(leftOperand.length === 0 && event.target.textContent === "0")){
-                        leftOperand.push(event.target.textContent);
-                    }
-                }
-            }
-            else{
-                if(event.target.textContent === "." && rightOperand.length !== 0){
-                    if(!rightOperand.includes(".")){
-                        rightOperand.push(event.target.textContent);
-                    }
+    let eventTextContent = event.target.textContent;
+    let eventTagName = event.target.tagName;
 
-                }
-                else{
-                    if(!(rightOperand.length === 0 && event.target.textContent === "0")){
-                        rightOperand.push(event.target.textContent);
-                    }
-                }
+    if(eventTagName === "BUTTON"){
+        let isNumber = typeof +eventTextContent === "number" && !isNaN(+eventTextContent);
+
+        if(isNumber || eventTextContent === "."){
+            let isLeftOperand = mathOperator === "";
+            let currentOperand = isLeftOperand ? leftOperand : rightOperand;
+
+            let isClickedPointAndValid = eventTextContent === "." && !currentOperand.includes(".") && currentOperand.length !== 0;
+            let isClickedZeroAndValid = currentOperand.includes(".") || currentOperand[0] !== "0";
+
+            if(isClickedPointAndValid || isClickedZeroAndValid){
+                currentOperand.push(eventTextContent);
             }
         }
-        else if(event.target.textContent === "clear"){
+        else if(eventTextContent === "clear"){
             leftOperand = [];
             mathOperator = "";
             rightOperand = [];
         }
-        else if(event.target.textContent === "±"){}
-        else if(event.target.textContent === "="){
-            let checkValidOperation = !(leftOperand.length === 0 || mathOperator === "" || rightOperand.length === 0);
-            if(checkValidOperation){
+        else if(eventTextContent === "±"){}
+        else if(eventTextContent === "="){
+            let isValidOperation = !(leftOperand.length === 0 || mathOperator === "" || rightOperand.length === 0);
+
+            if(isValidOperation){
                 let result;
                 let joinedLeftOperand = +leftOperand.join("");
                 let joinedRightOperand = +rightOperand.join("");
@@ -74,20 +64,20 @@ buttons.addEventListener("click", (event) => {
                 display.textContent = `${result}`;
             }
         }
-        else{
-            mathOperator = event.target.textContent;
+        else if(leftOperand.length !== 0){
+            mathOperator = eventTextContent;
         }
     }
+    if(eventTextContent !== "="){
+        let isCalculationVariablesReset = leftOperand.length === 0 && mathOperator === "" && rightOperand.length === 0;
 
-    if(event.target.textContent !== "="){
-        if(leftOperand.length === 0 && mathOperator === "" && rightOperand.length === 0){
-            display.textContent = `0`;
+        if (isCalculationVariablesReset){
+            display.textContent = `Click the buttons below to start calculating...`;
         }
-        else{
+        else if (leftOperand.length !== 0){
             display.textContent = `${leftOperand.join("")} ${mathOperator} ${rightOperand.join("")}`;
         }
     }
-    console.log(`L: ${leftOperand.join("")} M: ${mathOperator} R: ${rightOperand.join("")}`)
 
     event.stopPropagation();
 });
