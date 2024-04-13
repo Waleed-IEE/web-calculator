@@ -89,15 +89,15 @@ buttons.addEventListener("click", (event) => {
             }
             mathOperator = eventTextContent;
         }
-    }
-    if(eventTextContent !== "="){
-        let isCalculationVariablesReset = leftOperand.length === 0 && mathOperator === "" && rightOperand.length === 0;
-
-        if (isCalculationVariablesReset){
-            display.textContent = `Click the buttons below to start calculating...`;
-        }
-        else if (leftOperand.length !== 0){
-            display.textContent = `${leftOperand.join("")} ${mathOperator} ${rightOperand.join("")}`;
+        if(eventTextContent !== "="){
+            let isCalculationVariablesReset = leftOperand.length === 0 && mathOperator === "" && rightOperand.length === 0;
+    
+            if (isCalculationVariablesReset){
+                display.textContent = `Click the buttons below to start calculating...`;
+            }
+            else if (leftOperand.length !== 0){
+                display.textContent = `${leftOperand.join("")} ${mathOperator} ${rightOperand.join("")}`;
+            }
         }
     }
     console.log(`L: ${leftOperand.join("")} M: ${mathOperator} R: ${rightOperand.join("")}`)
