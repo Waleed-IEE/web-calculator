@@ -34,10 +34,42 @@ const display = document.querySelector(".result.container");
 const buttons = document.querySelector(".buttons.container");
 
 function bro(event) {
-	let eventTextContent = event.target.textContent;
+    let eventTextContent;
 	let eventTagName = event.target.tagName;
+    let acceptedKeyboardCharacters = "0123456789/*-+=.÷×±⌫".split("");
+    acceptedKeyboardCharacters.push("Enter", "Backspace");
+    let isSafeKeyboardInput = acceptedKeyboardCharacters.includes(event.key);
 
-	if (eventTagName === "BUTTON") {
+	if (eventTagName === "BUTTON" || isSafeKeyboardInput) {
+        
+    /*--------------- Keyboard support -----------------*/
+        if(isSafeKeyboardInput){
+
+            switch (event.key) {
+                case "/":
+                    eventTextContent = "÷";
+                    break;
+                case "*":
+                    eventTextContent = "×";
+                    break;
+                case "-":
+                    if(event.altKey){eventTextContent = "±";}
+                    break;
+                case "Backspace":
+                    if (event.altKey){eventTextContent = "clear";} else {eventTextContent = "⌫";}
+                    break;
+                case "Enter":
+                    eventTextContent = "=";
+                    break;
+                default:
+                    eventTextContent = event.key;
+            }
+            
+        } else if (!isSafeKeyboardInput) {
+            eventTextContent = event.target.textContent;
+        }
+    /*---------------------------------------------------*/
+
 		let isNumber =
 			typeof +eventTextContent === "number" && !isNaN(+eventTextContent);
 
@@ -190,4 +222,6 @@ function bro(event) {
 	event.stopPropagation();
 }
 
+
 buttons.addEventListener("click", bro);
+document.addEventListener("keyup", bro);
