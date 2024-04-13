@@ -39,7 +39,10 @@ buttons.addEventListener("click", (event) => {
             let isTheClickedZeroValid = eventTextContent === "0" && (currentOperand.includes(".") || currentOperand[0] !== "0");
             let isTheClickedNotZeroNumberValid = eventTextContent !== "0" && isNumber;
 
-            if(isTheClickedDotValid || isTheClickedZeroValid || isTheClickedNotZeroNumberValid){
+            if(isTheClickedNotZeroNumberValid && currentOperand.length === 1 && currentOperand[0] === "0"){
+                currentOperand[0] = eventTextContent;
+            }
+            else if(isTheClickedDotValid || isTheClickedZeroValid || isTheClickedNotZeroNumberValid){
                 currentOperand.push(eventTextContent);
             }
         }
