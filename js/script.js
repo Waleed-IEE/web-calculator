@@ -35,11 +35,13 @@ buttons.addEventListener("click", (event) => {
             let currentOperand = isLeftOperand ? leftOperand : rightOperand;
 
             let isClickedPointAndValid = eventTextContent === "." && !currentOperand.includes(".") && currentOperand.length !== 0;
-            let isClickedZeroAndValid = currentOperand.includes(".") || currentOperand[0] !== "0";
+            let isClickedZeroAndValid = eventTextContent === "0" && (currentOperand.includes(".") || currentOperand[0] !== "0");
+            let isClickedNumberAndValid = eventTextContent !== "0" && isNumber;
 
-            if(isClickedPointAndValid || isClickedZeroAndValid){
+            if(isClickedPointAndValid || isClickedZeroAndValid || isClickedNumberAndValid){
                 currentOperand.push(eventTextContent);
             }
+
         }
         else if(eventTextContent === "clear"){
             leftOperand = [];
@@ -78,6 +80,7 @@ buttons.addEventListener("click", (event) => {
             display.textContent = `${leftOperand.join("")} ${mathOperator} ${rightOperand.join("")}`;
         }
     }
+    console.log(`L: ${leftOperand.join("")} M: ${mathOperator} R: ${rightOperand.join("")}`)
 
     event.stopPropagation();
 });
