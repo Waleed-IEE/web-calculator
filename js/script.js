@@ -49,19 +49,24 @@ buttons.addEventListener("click", (event) => {
         }
         else if(eventTextContent === "±"){}
         else if(eventTextContent === "="){
-            let isValidOperation = !(leftOperand.length === 0 || mathOperator === "" || rightOperand.length === 0);
+            let isValidMathematicalOperation = !(leftOperand.length === 0 || mathOperator === "" || rightOperand.length === 0);
 
-            if(isValidOperation){
+            if(isValidMathematicalOperation){
                 let result;
                 let joinedLeftOperand = +leftOperand.join("");
                 let joinedRightOperand = +rightOperand.join("");
 
-                if(joinedLeftOperand % 1 !== 0 || joinedRightOperand % 1 !== 0){
-                    result = operate(joinedLeftOperand, mathOperator, joinedRightOperand).toFixed(2);
+                if (joinedRightOperand !== 0){
+                    let isTheOperandFloat = joinedLeftOperand % 1 !== 0 || joinedRightOperand % 1 !== 0;
+
+                    isTheOperandFloat ? result = operate(joinedLeftOperand, mathOperator, joinedRightOperand).toFixed(2)
+                    : result = operate(joinedLeftOperand, mathOperator, joinedRightOperand);
                 }
-                else{
-                    result = operate(joinedLeftOperand, mathOperator, joinedRightOperand);
+                else if(joinedRightOperand === 0 && mathOperator === "÷"){
+                    result = joinedLeftOperand >= 0 ? "Division by 0 ERROR! But some debate it's +∞"
+                    : "Division by 0 ERROR! But some debate it's' -∞"
                 }
+
                 display.textContent = `${result}`;
             }
         }
