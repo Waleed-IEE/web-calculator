@@ -47,6 +47,7 @@ buttons.addEventListener("click", (event) => {
             leftOperand = [];
             mathOperator = "";
             rightOperand = [];
+            result = "Empty";
         }
         else if(eventTextContent === "±"){}
         else if(eventTextContent === "="){
@@ -71,7 +72,7 @@ buttons.addEventListener("click", (event) => {
                 // Modify float result to be more appealing
                 result = result.toString().split("");
                 while(result[result.length - 1] === "0" || result[result.length - 1] === "."){
-                    if (result[0] === "0" && !result.includes(".")){
+                    if (!result.includes(".")){
                         break;
                     }
                     result.pop();
