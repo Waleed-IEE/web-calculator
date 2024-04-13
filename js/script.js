@@ -31,7 +31,7 @@ let leftOperandSign = "",
 	result = "Empty";
 
 const display = document.querySelector(".result.container");
-const buttons = document.querySelector(".buttons.container");
+const buttons = document.querySelector(".display-paragraph");
 
 function bro(event) {
     let eventTextContent;
