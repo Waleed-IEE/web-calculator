@@ -59,7 +59,7 @@ buttons.addEventListener("click", (event) => {
         }
         else if(event.target.textContent === "±"){}
         else if(event.target.textContent === "="){
-            let checkValidOperation = !(leftOperand.length === 0 && mathOperator === "" && rightOperand.length === 0);
+            let checkValidOperation = !(leftOperand.length === 0 || mathOperator === "" || rightOperand.length === 0);
             if(checkValidOperation){
                 let result;
                 let joinedLeftOperand = +leftOperand.join("");
