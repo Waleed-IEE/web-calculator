@@ -23,6 +23,7 @@ let leftOperand = [], mathOperator = "", rightOperand = [];
 const display = document.querySelector(".result.container");
 const buttons = document.querySelector(".buttons.container");
 let result = "Empty";
+let leftOperandSign = "", rightOperandSign = "";
 
 buttons.addEventListener("click", (event) => {
     let eventTextContent = event.target.textContent;
@@ -50,15 +51,26 @@ buttons.addEventListener("click", (event) => {
             leftOperand = [];
             mathOperator = "";
             rightOperand = [];
+            leftOperandSign = "";
+            rightOperandSign = "";
             result = "Empty";
         }
-        else if(eventTextContent === "±"){}
+        else if(eventTextContent === "±"){
+            let isLeftOperand = mathOperator === "";
+            if(isLeftOperand){
+                leftOperandSign = leftOperandSign === "" ? "-" : "";
+            }
+            else{
+                rightOperandSign = rightOperandSign === "" ? "-" : "";
+            }
+
+        }
         else if(eventTextContent === "="){
             let isValidMathematicalOperation = !(leftOperand.length === 0 || mathOperator === "" || rightOperand.length === 0);
 
             if(isValidMathematicalOperation){
-                let joinedLeftOperand = +leftOperand.join("");
-                let joinedRightOperand = +rightOperand.join("");
+                let joinedLeftOperand = +[leftOperandSign, +leftOperand.join("")].join("");
+                let joinedRightOperand = +[rightOperandSign, +rightOperand.join("")].join("");
 
                 if (joinedRightOperand !== 0){
                     let isTheOperandFloat = joinedLeftOperand % 1 !== 0 || joinedRightOperand % 1 !== 0;
@@ -97,16 +109,17 @@ buttons.addEventListener("click", (event) => {
         }
         if(eventTextContent !== "="){
             let isCalculationVariablesReset = leftOperand.length === 0 && mathOperator === "" && rightOperand.length === 0;
+            let isItOkayToDisplay = leftOperand.length !== 0 || leftOperandSign !== "";
     
-            if (isCalculationVariablesReset){
+            if (isCalculationVariablesReset && !isItOkayToDisplay){
                 display.textContent = `Click the buttons below to start calculating...`;
             }
-            else if (leftOperand.length !== 0){
-                display.textContent = `${leftOperand.join("")} ${mathOperator} ${rightOperand.join("")}`;
+            else if (isItOkayToDisplay){
+                display.textContent = `${leftOperandSign}${leftOperand.join("")} ${mathOperator} ${rightOperandSign}${rightOperand.join("")}`;
             }
         }
     }
-    console.log(`L: ${leftOperand.join("")} M: ${mathOperator} R: ${rightOperand.join("")}`)
+    console.log(`L: ${leftOperandSign}${leftOperand.join("")} M: ${mathOperator} R: ${rightOperandSign}${rightOperand.join("")}`)
 
     event.stopPropagation();
 });
