@@ -162,8 +162,8 @@ function bro(event) {
 				if (joinedRightOperand === 0 && mathOperator === "÷") {
 					result =
 						joinedLeftOperand >= 0
-							? "Division by 0 ERROR! (Some debate it equals +∞)"
-							: "Division by 0 ERROR! (Some debate it equals -∞)";
+							? "Division by 0 ERROR! (Nuh Uh it's +∞)"
+							: "Division by 0 ERROR! (Nuh Uh it's -∞)";
 					display.textContent = `${result}`;
 					result = "Empty";
 				} else {
