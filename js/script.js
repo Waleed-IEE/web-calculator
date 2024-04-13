@@ -57,13 +57,23 @@ buttons.addEventListener("click", (event) => {
         }
         else if(eventTextContent === "±"){
             let isLeftOperand = mathOperator === "";
-            if(isLeftOperand){
-                leftOperandSign = leftOperandSign === "" ? "-" : "";
+            if(result === "Empty"){
+                if(isLeftOperand){
+                    leftOperandSign = leftOperandSign === "" ? "-" : "";
+                }
+                else{
+                    rightOperandSign = rightOperandSign === "" ? "-" : "";
+                }
             }
             else{
-                rightOperandSign = rightOperandSign === "" ? "-" : "";
+                leftOperandSign = "";
+                leftOperand = result.toString().split("");
+                leftOperand[0] === "-" ? leftOperand.shift() : leftOperandSign = "-";
+                rightOperand = [];
+                rightOperandSign = "";
+                mathOperator = "";
+                result = "Empty";
             }
-
         }
         else if(eventTextContent === "="){
             let isValidMathematicalOperation = !(leftOperand.length === 0 || mathOperator === "" || rightOperand.length === 0);
@@ -84,8 +94,8 @@ buttons.addEventListener("click", (event) => {
 
                 }
 
+                // Modify float result to be more appealing
                 if(typeof result !== "string"){
-                    // Modify float result to be more appealing
                     result = result.toString().split("");
                     while(result[result.length - 1] === "0" || result[result.length - 1] === "."){
                         if (!result.includes(".")){
@@ -99,14 +109,20 @@ buttons.addEventListener("click", (event) => {
                 display.textContent = `${result}`;
             }
         }
+        // operator buttons
         else if(leftOperand.length !== 0){
             if(result !== "Empty"){
                 leftOperand = result.toString().split("");
+                leftOperandSign = result.toString().split("")[0] === "-" ? "-" : "";
+                leftOperandSign === "-" ? leftOperand.shift(): true;
                 rightOperand = [];
-                result === "Empty";
+                rightOperandSign = "";
+                mathOperator = "";
+                result = "Empty";
             }
             mathOperator = eventTextContent;
         }
+
         if(eventTextContent !== "="){
             let isCalculationVariablesReset = leftOperand.length === 0 && mathOperator === "" && rightOperand.length === 0;
             let isItOkayToDisplay = leftOperand.length !== 0 || leftOperandSign !== "";
@@ -119,7 +135,7 @@ buttons.addEventListener("click", (event) => {
             }
         }
     }
-    console.log(`L: ${leftOperandSign}${leftOperand.join("")} M: ${mathOperator} R: ${rightOperandSign}${rightOperand.join("")}`)
+    console.log(`L: ${leftOperandSign}${leftOperand.join("")} M: ${mathOperator} R: ${rightOperandSign}${rightOperand.join("")} result: ${result}`)
 
     event.stopPropagation();
 });
