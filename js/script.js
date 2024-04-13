@@ -61,7 +61,16 @@ buttons.addEventListener("click", (event) => {
         else if(event.target.textContent === "="){
             let checkValidOperation = !(leftOperand.length === 0 && mathOperator === "" && rightOperand.length === 0);
             if(checkValidOperation){
-                let result = operate(+leftOperand.join(""), mathOperator, +rightOperand.join(""));
+                let result;
+                let joinedLeftOperand = +leftOperand.join("");
+                let joinedRightOperand = +rightOperand.join("");
+
+                if(joinedLeftOperand % 1 !== 0 || joinedRightOperand % 1 !== 0){
+                    result = operate(joinedLeftOperand, mathOperator, joinedRightOperand).toFixed(2);
+                }
+                else{
+                    result = operate(joinedLeftOperand, mathOperator, joinedRightOperand);
+                }
                 display.textContent = `${result}`;
             }
         }
