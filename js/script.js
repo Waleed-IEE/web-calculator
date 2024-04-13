@@ -65,7 +65,18 @@ buttons.addEventListener("click", (event) => {
                 else if(joinedRightOperand === 0 && mathOperator === "÷"){
                     result = joinedLeftOperand >= 0 ? "Division by 0 ERROR! But some debate it's +∞"
                     : "Division by 0 ERROR! But some debate it's' -∞"
+
                 }
+
+                // Modify float result to be more appealing
+                result = result.toString().split("");
+                while(result[result.length - 1] === "0" || result[result.length - 1] === "."){
+                    if (result[0] === "0" && !result.includes(".")){
+                        break;
+                    }
+                    result.pop();
+                }
+                result = +result.join("");
 
                 display.textContent = `${result}`;
             }
