@@ -16,7 +16,7 @@ function operate(leftOperand, mathOperator, rightOperand){
     : mathOperator === "-" ? subtract(leftOperand, rightOperand)
     : mathOperator === "*" || mathOperator === "×" ? multiply(leftOperand, rightOperand)
     : mathOperator === "/" || mathOperator === "÷" ? divide(leftOperand, rightOperand)
-    : "INVALID MATH OPERATOR!"
+    : "INVALID MATH OPERATOR!";
 }
 
 let leftOperand = [], mathOperator = "", rightOperand = [];
@@ -95,39 +95,31 @@ buttons.addEventListener("click", (event) => {
         else if(eventTextContent === "="){
             let isValidMathematicalOperation = !(leftOperand.length === 0 || mathOperator === "" || rightOperand.length === 0);
 
+            
             if(isValidMathematicalOperation){
                 let joinedLeftOperand = +[leftOperandSign, +leftOperand.join("")].join("");
                 let joinedRightOperand = +[rightOperandSign, +rightOperand.join("")].join("");
 
-                if (joinedRightOperand !== 0){
+                if(joinedRightOperand === 0 && mathOperator === "÷"){
+                    result = joinedLeftOperand >= 0 ? "Division by 0 ERROR! (Some debate it equals +∞)"
+                    : "Division by 0 ERROR! (Some debate it equals -∞)";
+                    display.textContent = `${result}`;
+                    result = "Empty";
+                    
+                }
+                else{
                     let isTheOperandFloat = joinedLeftOperand % 1 !== 0 || joinedRightOperand % 1 !== 0;
 
-                    isTheOperandFloat ? result = operate(joinedLeftOperand, mathOperator, joinedRightOperand).toFixed(2)
-                    : result = operate(joinedLeftOperand, mathOperator, joinedRightOperand);
-                }
-                else if(joinedRightOperand === 0 && mathOperator === "÷"){
-                    result = joinedLeftOperand >= 0 ? "Division by 0 ERROR! (Some debate it equals +∞)"
-                    : "Division by 0 ERROR! (Some debate it equals -∞)"
+                    isTheOperandFloat ? result = +operate(joinedLeftOperand, mathOperator, joinedRightOperand).toFixed(2)
+                    : result = +operate(joinedLeftOperand, mathOperator, joinedRightOperand);
 
+                    display.textContent = `${result}`;
                 }
 
-                // Modify float result to be more appealing
-                if(typeof result !== "string"){
-                    result = result.toString().split("");
-                    while(result[result.length - 1] === "0" || result[result.length - 1] === "."){
-                        if (!result.includes(".")){
-                            break;
-                        }
-                        result.pop();
-                    }
-                    result = +result.join("");
-                }
-
-                display.textContent = `${result}`;
             }
         }
         // operator buttons
-        else if(leftOperand.length !== 0){
+        else if(leftOperand.length !== 0 && leftOperand[leftOperand.length - 1] !== "." && rightOperand[rightOperand.length - 1] !== "."){
             if(result !== "Empty"){
                 leftOperand = result.toString().split("");
                 leftOperandSign = result.toString().split("")[0] === "-" ? "-" : "";
