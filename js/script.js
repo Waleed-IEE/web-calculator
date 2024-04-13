@@ -34,14 +34,13 @@ buttons.addEventListener("click", (event) => {
             let isLeftOperand = mathOperator === "";
             let currentOperand = isLeftOperand ? leftOperand : rightOperand;
 
-            let isClickedPointAndValid = eventTextContent === "." && !currentOperand.includes(".") && currentOperand.length !== 0;
-            let isClickedZeroAndValid = eventTextContent === "0" && (currentOperand.includes(".") || currentOperand[0] !== "0");
-            let isClickedNumberAndValid = eventTextContent !== "0" && isNumber;
+            let isTheClickedDotValid = eventTextContent === "." && !currentOperand.includes(".") && currentOperand.length !== 0;
+            let isTheClickedZeroValid = eventTextContent === "0" && (currentOperand.includes(".") || currentOperand[0] !== "0");
+            let isTheClickedNotZeroNumberValid = eventTextContent !== "0" && isNumber;
 
-            if(isClickedPointAndValid || isClickedZeroAndValid || isClickedNumberAndValid){
+            if(isTheClickedDotValid || isTheClickedZeroValid || isTheClickedNotZeroNumberValid){
                 currentOperand.push(eventTextContent);
             }
-
         }
         else if(eventTextContent === "clear"){
             leftOperand = [];
