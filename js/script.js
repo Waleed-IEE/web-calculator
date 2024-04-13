@@ -72,15 +72,17 @@ buttons.addEventListener("click", (event) => {
 
                 }
 
-                // Modify float result to be more appealing
-                result = result.toString().split("");
-                while(result[result.length - 1] === "0" || result[result.length - 1] === "."){
-                    if (!result.includes(".")){
-                        break;
+                if(typeof result !== "string"){
+                    // Modify float result to be more appealing
+                    result = result.toString().split("");
+                    while(result[result.length - 1] === "0" || result[result.length - 1] === "."){
+                        if (!result.includes(".")){
+                            break;
+                        }
+                        result.pop();
                     }
-                    result.pop();
+                    result = +result.join("");
                 }
-                result = +result.join("");
 
                 display.textContent = `${result}`;
             }
