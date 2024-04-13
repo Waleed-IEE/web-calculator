@@ -67,8 +67,8 @@ buttons.addEventListener("click", (event) => {
                     : result = operate(joinedLeftOperand, mathOperator, joinedRightOperand);
                 }
                 else if(joinedRightOperand === 0 && mathOperator === "÷"){
-                    result = joinedLeftOperand >= 0 ? "Division by 0 ERROR! But some debate it's +∞"
-                    : "Division by 0 ERROR! But some debate it's' -∞"
+                    result = joinedLeftOperand >= 0 ? "Division by 0 ERROR! (Some debate it equals +∞)"
+                    : "Division by 0 ERROR! (Some debate it equals -∞)"
 
                 }
 
