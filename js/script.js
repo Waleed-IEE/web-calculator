@@ -22,6 +22,7 @@ function operate(leftOperand, mathOperator, rightOperand){
 let leftOperand = [], mathOperator = "", rightOperand = [];
 const display = document.querySelector(".result.container");
 const buttons = document.querySelector(".buttons.container");
+let result = "Empty";
 
 buttons.addEventListener("click", (event) => {
     let eventTextContent = event.target.textContent;
@@ -52,7 +53,6 @@ buttons.addEventListener("click", (event) => {
             let isValidMathematicalOperation = !(leftOperand.length === 0 || mathOperator === "" || rightOperand.length === 0);
 
             if(isValidMathematicalOperation){
-                let result;
                 let joinedLeftOperand = +leftOperand.join("");
                 let joinedRightOperand = +rightOperand.join("");
 
@@ -82,6 +82,11 @@ buttons.addEventListener("click", (event) => {
             }
         }
         else if(leftOperand.length !== 0){
+            if(result !== "Empty"){
+                leftOperand = result.toString().split("");
+                rightOperand = [];
+                result === "Empty";
+            }
             mathOperator = eventTextContent;
         }
     }
