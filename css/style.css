@@ -1,6 +1,131 @@
-*
-{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+html,
+body {
+	height: 100%;
+}
+.calculator,
+.buttons, body {
+	display: flex;
+	flex-direction: column;
+}
+body{
+    justify-content: center;
+    align-items: center;
+}
+.calculator {
+	align-items: center;
+	height: max-content;
+	justify-content: center;
+	width: max-content;
+}
+.result {
+	background-color: #424242;
+	border-top-left-radius: 1em;
+	border-top-right-radius: 1em;
+	padding: 1em;
+	width: 100%;
+}
+.display-paragraph {
+	align-items: center;
+	background-color: #9ccc65;
+	border-radius: 0.25em;
+	color: #33691e;
+	cursor: default;
+	display: flex;
+	flex: 1;
+	font-size: xx-large;
+	justify-content: end;
+	padding: 0.2em 0.5em;
+}
+/**/
+.buttons.container {
+	background-color: #616161;
+	border-bottom-left-radius: 1em;
+	border-bottom-right-radius: 1em;
+	padding: 1em;
+    width: 100%;
+    align-items: center;
+}
+button {
+	border-radius: 0.3em;
+	border-style: none;
+	color: #444;
+	font-size: large;
+	height: 10vh;
+	margin: 4px;
+	width: 10vh;
+    flex: 1;
+    outline: none;
+}
+.row {
+	display: flex;
+    width: 100%;
+}
+
+.clear {
+	background-color: #ff5252;
+	color: #ffd4d4;
+    flex: 2;
+}
+.row .clear:hover {
+	background-color: #ff4141;
+	color: #ffbdbd;
+	cursor: pointer;
+}
+.row .clear:active {
+	background-color: #ff3030;
+	color: #ffa5a5;
+	cursor: pointer;
+}
+
+.equal {
+	background-color: #6dcde1;
+}
+.row .equal:hover {
+	background-color: #5fc8de;
+	cursor: pointer;
+}
+.row .equal:active {
+	background-color: #51c4db;
+	cursor: pointer;
+}
+
+.number {
+	background-color: #e6e6e6;
+}
+.row .number:hover {
+	background-color: #dadada;
+	cursor: pointer;
+}
+.row .number:active {
+	background-color: #cfcfcf;
+	cursor: pointer;
+}
+
+.operator.button {
+	background-color: #848484;
+}
+.row .operator:hover {
+	background-color: #7d7d7d;
+	cursor: pointer;
+}
+.row .operator:active {
+	background-color: #777;
+	cursor: pointer;
+}
+
+.button.special {
+	background-color: #acacac;
+}
+.row .special:hover {
+	background-color: #a3a3a3;
+	cursor: pointer;
+}
+.row .special:active {
+	background-color: #9b9b9b;
+	cursor: pointer;
 }
