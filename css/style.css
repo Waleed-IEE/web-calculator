@@ -1,3 +1,8 @@
+@font-face {
+    font-family:digital-7mono;
+    src: url('../fonts/digital-7mono.ttf');
+}
+
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -62,8 +67,10 @@ header{
 	flex: 1;
 	font-size: xx-large;
 	justify-content: end;
-	padding: 0.2em 0.5em;
+	padding-right: 0.5em;
     overflow: hidden;
+    font-family: digital-7mono;
+    height: 1.5em;
 }
 /**/
 .buttons.container {
