@@ -235,3 +235,7 @@ let mouse = document.querySelector(".calculator");
 mouse.addEventListener("dragstart", (e) => e.preventDefault());
 mouse.addEventListener("contextmenu", (e) => e.preventDefault());
 document.addEventListener("selectstart", (e) => e.preventDefault());
+
+// Prevent buttons focus
+let buttonTag = document.querySelectorAll("button");
+buttonTag.forEach(buttonItem => buttonItem.addEventListener("focus", () => buttonItem.blur()));
