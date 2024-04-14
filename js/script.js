@@ -33,14 +33,17 @@ let leftOperandSign = "",
 const display = document.querySelector(".display-paragraph");
 const buttons = document.querySelector(".buttons.container");
 
+let acceptedKeyboardCharacters = "0123456789/*-+=.÷×±⌫".split("");
+acceptedKeyboardCharacters.push("Enter", "Backspace");
+
 function bro(event) {
     let eventTextContent;
 	let eventTagName = event.target.tagName;
-    let acceptedKeyboardCharacters = "0123456789/*-+=.÷×±⌫".split("");
-    acceptedKeyboardCharacters.push("Enter", "Backspace");
     let isSafeKeyboardInput = acceptedKeyboardCharacters.includes(event.key);
+	let isSafeButtonClick = eventTagName === "BUTTON" && !event.key;
 
-	if (eventTagName === "BUTTON" || isSafeKeyboardInput) {
+	//console.table("Event key:", event.key, ",is safe keyboard input:", isSafeKeyboardInput, ",eventtagname is button:", eventTagName === "BUTTON", ",safe button click:", isSafeButtonClick,  ",text context:",event.target.textContent);
+	if (isSafeButtonClick || isSafeKeyboardInput) {
         
     /*--------------- Keyboard support -----------------*/
         if(isSafeKeyboardInput){
@@ -224,6 +227,7 @@ function bro(event) {
 
 
 buttons.addEventListener("click", bro);
+buttons.addEventListener("keypress", (e) => e.key === "Enter" ? e.preventDefault() : false);
 document.addEventListener("keyup", bro);
 
 // Prevent unwanted mouse behaviors
