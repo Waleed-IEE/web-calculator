@@ -204,7 +204,7 @@ function bro(event) {
 			let isDisplayOkay = leftOperand.length !== 0 || leftOperandSign !== "";
 
 			if (isReset && !isDisplayOkay) {
-				display.textContent = `0`;
+				display.textContent = `|`;
 			} else if (isDisplayOkay) {
 				display.textContent = `${leftOperandSign}${leftOperand.join("")} ${mathOperator} ${rightOperandSign}${rightOperand.join("")}`;
 			}
