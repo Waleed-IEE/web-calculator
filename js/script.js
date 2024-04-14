@@ -30,8 +30,8 @@ let leftOperandSign = "",
 	rightOperand = [],
 	result = "Empty";
 
-const display = document.querySelector(".result.container");
-const buttons = document.querySelector(".display-paragraph");
+const display = document.querySelector(".display-paragraph");
+const buttons = document.querySelector(".buttons.container");
 
 function bro(event) {
     let eventTextContent;
