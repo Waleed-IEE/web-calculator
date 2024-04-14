@@ -225,3 +225,9 @@ function bro(event) {
 
 buttons.addEventListener("click", bro);
 document.addEventListener("keyup", bro);
+
+// Prevent unwanted mouse behaviors
+let mouse = document.querySelector(".calculator");
+mouse.addEventListener("dragstart", (e) => e.preventDefault());
+mouse.addEventListener("contextmenu", (e) => e.preventDefault());
+document.addEventListener("selectstart", (e) => e.preventDefault());
