@@ -33,6 +33,7 @@ let leftOperandSign = "",
 const display = document.querySelector(".display-paragraph");
 const buttons = document.querySelector(".buttons.container");
 
+let operatorString = "/*-+÷×".split("");
 let acceptedKeyboardCharacters = "0123456789/*-+=.÷×±⌫".split("");
 acceptedKeyboardCharacters.push("Enter", "Backspace");
 
@@ -42,7 +43,6 @@ function bro(event) {
     let isSafeKeyboardInput = acceptedKeyboardCharacters.includes(event.key);
 	let isSafeButtonClick = eventTagName === "BUTTON" && !event.key;
 
-	//console.table("Event key:", event.key, ",is safe keyboard input:", isSafeKeyboardInput, ",eventtagname is button:", eventTagName === "BUTTON", ",safe button click:", isSafeButtonClick,  ",text context:",event.target.textContent);
 	if (isSafeButtonClick || isSafeKeyboardInput) {
         
     /*--------------- Keyboard support -----------------*/
@@ -151,12 +151,12 @@ function bro(event) {
 				leftOperandSign = "";
 			}
 
-		} else if (eventTextContent === "=") {
+		} else if (eventTextContent === "=" || operatorString.includes(eventTextContent)) {
+			console.log(operatorString.includes(eventTextContent));
 			let isValidMathematicalOperation = !(
 				leftOperand.length === 0 ||
 				mathOperator === "" ||
-				rightOperand.length === 0
-			);
+				rightOperand.length === 0);
 
 			if (isValidMathematicalOperation) {
 				let joinedLeftOperand = +[leftOperandSign, +leftOperand.join("")].join("");
@@ -178,22 +178,23 @@ function bro(event) {
 					} else {
 						result = +operate(joinedLeftOperand, mathOperator, joinedRightOperand);
 					}
-
 					display.textContent = `${result}`;
 				}
 			}
 
-		} else if (isThrClickedOperatorValid) {
-			if (result !== "Empty") {
-				leftOperand = result.toString().split("");
-				leftOperandSign = result.toString().split("")[0] === "-" ? "-" : "";
-				leftOperandSign === "-" ? leftOperand.shift() : true;
-				rightOperand = [];
-				rightOperandSign = "";
-				mathOperator = "";
-				result = "Empty";
+			if (operatorString.includes(eventTextContent)){
+				if (result !== "Empty") {
+					leftOperand = result.toString().split("");
+					leftOperandSign = result.toString().split("")[0] === "-" ? "-" : "";
+					leftOperandSign === "-" ? leftOperand.shift() : true;
+					rightOperand = [];
+					rightOperandSign = "";
+					mathOperator = "";
+					result = "Empty";
+				}
+
+				mathOperator = eventTextContent
 			}
-			mathOperator = eventTextContent;
 		}
 
     /*--------------------------------------------   Display   ---------------------------------------------*/
