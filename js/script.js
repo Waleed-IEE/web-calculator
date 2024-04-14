@@ -53,7 +53,7 @@ function bro(event) {
                     eventTextContent = "×";
                     break;
                 case "-":
-                    if(event.altKey){eventTextContent = "±";}
+                    if(event.altKey){eventTextContent = "±";} else {eventTextContent = "-";}
                     break;
                 case "Backspace":
                     if (event.altKey){eventTextContent = "clear";} else {eventTextContent = "⌫";}
