@@ -76,7 +76,8 @@ function bro(event) {
 		let isNumber =
 			typeof +eventTextContent === "number" && !isNaN(+eventTextContent);
 
-		let isThrClickedOperatorValid =
+		let isTheClickedOperatorValid =
+			operatorString.includes(eventTextContent) &&
 			leftOperand.length !== 0 &&
 			leftOperand[leftOperand.length - 1] !== "." &&
 			rightOperand[rightOperand.length - 1] !== ".";
@@ -151,7 +152,7 @@ function bro(event) {
 				leftOperandSign = "";
 			}
 
-		} else if (eventTextContent === "=" || (operatorString.includes(eventTextContent) && leftOperand.length !== 0)) {
+		} else if (eventTextContent === "=" || isTheClickedOperatorValid) {
 			let isValidMathematicalOperation = !(
 				leftOperand.length === 0 ||
 				mathOperator === "" ||
