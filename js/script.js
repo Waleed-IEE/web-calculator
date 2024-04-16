@@ -151,8 +151,7 @@ function bro(event) {
 				leftOperandSign = "";
 			}
 
-		} else if (eventTextContent === "=" || operatorString.includes(eventTextContent)) {
-			console.log(operatorString.includes(eventTextContent));
+		} else if (eventTextContent === "=" || (operatorString.includes(eventTextContent) && leftOperand.length !== 0)) {
 			let isValidMathematicalOperation = !(
 				leftOperand.length === 0 ||
 				mathOperator === "" ||
